@@ -1,0 +1,14 @@
+{
+  "name": "aktiesparekonto",
+  "version": "1.0.0",
+  "description": "Dansk informationsside og læringsberegner for aktiesparekonto",
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndreasHassing/aktiesparekonto.git"
+  },
+  "private": true,
+  "type": "module"
+}

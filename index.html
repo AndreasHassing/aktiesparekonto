@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forstå aktiesparekontoen. Prøv en gratis beregner og se, hvordan afkast, ETF-omkostninger og skat påvirker din opsparing.">
+  <meta name="theme-color" content="#183f35">
+  <title>Aktiesparekonto — få overblik over din opsparing</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23183f35'/%3E%3Cpath d='M10 28V19m10 9V13m10 15V7' stroke='%23e6f3ab' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Gå til indhold</a>
+  <header class="site-header page-width">
+    <a class="brand" href="./" aria-label="Aktiesparekonto, forsiden">
+      <span class="brand-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+      aktiesparekonto<span class="brand-dot">.</span>
+    </a>
+    <nav aria-label="Hovednavigation">
+      <a href="#om">Kort fortalt</a>
+      <a href="#beregner">Beregn selv <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main" class="page-width">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow"><span class="status-dot"></span> MINDRE MYSTIK. MERE OVERBLIK.</p>
+        <h1 id="hero-title">Lær din opsparing<br>bedre at kende<span class="brand-dot">.</span></h1>
+        <p class="hero-copy">Hvad er en aktiesparekonto egentlig? Og hvad betyder afkast, omkostninger og skat for dine penge? Få det korte svar — og prøv selv.</p>
+        <a class="primary-link" href="#beregner">Udforsk dine muligheder <span aria-hidden="true">↓</span></a>
+      </div>
+      <aside class="hero-note" aria-label="Aktiesparekontoens skattesats">
+        <span class="note-label">EN KONTO. SÆRLIGE SKATTEREGLER.</span>
+        <div class="tax-number">17<span>%</span></div>
+        <p>skat af årets afkast<br>— også når du ikke har solgt.</p>
+        <a href="#kilde-skat">Det kaldes lagerbeskatning <span aria-hidden="true">↗</span></a>
+        <span class="note-decoration" aria-hidden="true"></span>
+      </aside>
+    </section>
+
+    <section id="om" class="intro-grid" aria-label="Aktiesparekonto kort fortalt">
+      <article>
+        <span class="section-number">01 / HVAD ER DET?</span>
+        <h2>En ramme om dine investeringer</h2>
+        <p>En aktiesparekonto er en særlig konto til aktier og visse aktiebaserede investeringsbeviser. Afkastet beskattes med 17 %, og banken beregner og betaler skatten for dig. <a class="citation" href="#kilde-skat" aria-label="Kilde 1: Skattestyrelsen">[1]</a></p>
+      </article>
+      <article>
+        <span class="section-number">02 / HVEM ER DEN TIL?</span>
+        <h2>Til dig, der vil investere</h2>
+        <p>Du skal være fuldt skattepligtig til Danmark. Både voksne og børn kan have en aktiesparekonto, men kun én pr. person. Investering indebærer risiko — det er ikke en almindelig opsparingskonto. <a class="citation" href="#kilde-skat" aria-label="Kilde 1: Skattestyrelsen">[1]</a></p>
+      </article>
+      <article>
+        <span class="section-number">03 / HVOR MEGET?</span>
+        <h2>174.200 kr. i 2026</h2>
+        <p>Indskudsloftet afhænger af kontoens værdi den 31. december året før. Kontoen må gerne vokse over loftet gennem afkast. Der gælder særlige regler for indbetaling til skat. <a class="citation" href="#kilde-skat" aria-label="Kilde 1: Skattestyrelsen">[1]</a></p>
+      </article>
+    </section>
+
+    <section id="beregner" class="calculator-section" aria-labelledby="calculator-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">FRA PROCENTER TIL KRONER</p><h2 id="calculator-title">Hvad kan dine penge blive til?</h2></div>
+        <span class="small-badge"><span aria-hidden="true">✳</span> Et læringsværktøj, ikke en prognose</span>
+      </div>
+      <noscript><p class="notice">Slå JavaScript til for at bruge beregneren. Du kan stadig læse om aktiesparekontoen og skattereglerne her på siden.</p></noscript>
+      <div class="calculator">
+        <form id="calculator-form" class="input-panel">
+          <fieldset id="calculator-inputs" disabled>
+            <legend class="panel-title">Dine forudsætninger</legend>
+            <div class="field">
+              <label for="deposit">Din indbetaling <span class="unit">kr.</span></label>
+              <input id="deposit" name="deposit" type="number" inputmode="decimal" min="0" max="174200" step="any" value="50000" required aria-describedby="deposit-help">
+              <input id="deposit-range" type="range" min="0" max="174200" step="100" value="50000" aria-label="Justér indbetaling i kroner">
+              <p id="deposit-help" class="field-help">Engangsindskud på en ny, tom konto i 2026.</p>
+            </div>
+            <div class="field">
+              <label for="annualReturn">Årligt afkast før omkostninger <span class="unit">%</span></label>
+              <input id="annualReturn" name="annualReturn" type="number" inputmode="decimal" min="-100" max="50" step="any" value="7" required aria-describedby="return-help">
+              <input id="return-range" type="range" min="-100" max="50" step="0.5" value="7" aria-label="Justér årligt afkast i procent">
+              <p id="return-help" class="field-help">Prøv også et negativt afkast for at se et tab.</p>
+            </div>
+            <div class="field">
+              <label for="years">Din tidshorisont <span class="unit">år</span></label>
+              <input id="years" name="years" type="number" inputmode="numeric" min="1" max="40" step="1" value="10" required>
+              <input id="years-range" type="range" min="1" max="40" step="1" value="10" aria-label="Justér tidshorisont i år">
+            </div>
+            <div class="field fee-field">
+              <label for="annualFee">Årlig ETF-omkostning <span class="unit">%</span></label>
+              <input id="annualFee" name="annualFee" type="number" inputmode="decimal" min="0" max="10" step="any" value="0.2" required aria-describedby="fee-help">
+              <p id="fee-help" class="field-help">0,2 % er et eksempel. Se din ETF's faktiske omkostninger.</p>
+            </div>
+            <div class="scenario-controls" aria-label="Eksempler på årligt afkast">
+              <span>Prøv et scenarie</span>
+              <div><button type="button" data-return="-5">−5 %</button><button type="button" data-return="0">0 %</button><button type="button" data-return="7" aria-pressed="true">+7 %</button></div>
+            </div>
+            <button class="reset-button" type="reset">↺ Nulstil forudsætninger</button>
+          </fieldset>
+        </form>
+
+        <div class="result-panel">
+          <p id="input-error" class="notice" role="alert" hidden></p>
+          <div id="results" hidden>
+            <div class="result-header" aria-live="polite" aria-atomic="true">
+              <p class="result-label">Din beregnede værdi efter <span id="result-years">10</span> år</p>
+              <p class="result-value" id="ending-value"></p>
+              <p class="result-change"><span id="change-value" class="change-badge"></span><span>efter skat og ETF-omkostninger</span></p>
+            </div>
+            <figure class="chart-figure">
+              <figcaption class="chart-legend"><span><i class="legend-net"></i>Din kontoværdi</span><span><i class="legend-gross"></i>Uden skat og omkostninger</span></figcaption>
+              <svg id="chart" viewBox="0 0 680 270" role="img" aria-labelledby="chart-title chart-description">
+                <title id="chart-title">Udvikling i din investering</title>
+                <desc id="chart-description"></desc>
+                <g id="chart-content"></g>
+              </svg>
+              <p class="chart-note">Samme afkast hvert år er en forenkling. I virkeligheden svinger markedet.</p>
+            </figure>
+            <div class="result-stats">
+              <div><span>Du har indbetalt</span><strong id="deposited-value"></strong></div>
+              <div><span>ETF-omkostninger i alt</span><strong id="fees-value"></strong></div>
+              <div><span>Betalt skat i alt</span><strong id="tax-value"></strong></div>
+            </div>
+            <p id="loss-note" class="loss-note" hidden></p>
+            <div class="result-footnote"><span aria-hidden="true">ⓘ</span><p>Skatten betales fra kontoen i modellen. Beløbene er i fremtidige kroner, uden inflation. Du kan miste hele din investering.</p></div>
+          </div>
+          <p id="loading-note">Beregneren indlæses… JavaScript er nødvendigt for at vise resultatet.</p>
+        </div>
+      </div>
+      <details class="details-block">
+        <summary>Se beregningen år for år <span aria-hidden="true">+</span></summary>
+        <div class="table-wrapper" tabindex="0" role="region" aria-label="Årsoversigt, rul vandret på små skærme">
+          <table>
+            <caption>Alle beløb i kroner. Negativ skat fremføres; den udbetales ikke.</caption>
+            <thead><tr><th scope="col">År</th><th scope="col">Startværdi</th><th scope="col">Afkast</th><th scope="col">ETF-omk.</th><th scope="col">Betalt skat</th><th scope="col">Slutværdi</th><th scope="col">Fremført negativ skat</th></tr></thead>
+            <tbody id="yearly-rows"></tbody>
+          </table>
+        </div>
+      </details>
+      <details class="details-block assumptions">
+        <summary>Forudsætninger og sådan regner vi <span aria-hidden="true">+</span></summary>
+        <div class="details-content">
+          <p>Vi regner med én indbetaling, ingen efterfølgende indskud eller hævninger og et konstant årligt afkast med eventuelle udbytter geninvesteret. Afkastet er før ETF-omkostninger og skat. Standardafkastet på 7 % er et regneeksempel, ikke et forventet eller garanteret afkast.</p>
+          <ol>
+            <li>Årets afkast = værdien ved årets start × den valgte afkastprocent.</li>
+            <li>ETF-omkostning = værdien efter afkast × den valgte omkostningsprocent. Det er en årlig tilnærmelse; en ETF's løbende omkostninger indgår normalt i fondens kurs. Brug derfor ikke et afkast, der allerede er efter disse omkostninger.</li>
+            <li>Årets skattepligtige afkast er i modellen afkast minus ETF-omkostninger. Positivt afkast beskattes med 17 %, efter modregning af eventuel fremført negativ skat. Et tab giver negativ skat på 17 % af tabet til senere år på samme konto — ingen kontant skatterefusion.</li>
+            <li>Skat trækkes fra kontoen ved årets slutning i modellen. I praksis hæver banken skatten til betaling året efter. Du må indbetale til skat ud over loftet i det kalenderår, hvor skatten forfalder. Den mulighed indgår ikke i beregningen.</li>
+          </ol>
+          <p>Vi medregner ikke kurtage, valutaveksling, depotgebyrer, udenlandsk udbytteskat eller inflation. Modellen fastholder skattesatsen i hele perioden og antager en ETF, der må ligge på en aktiesparekonto. Ikke alle ETF'er er tilladt. Grafens sammenligning er uden både skat og omkostninger; den er ikke en beregning af et almindeligt aktiedepot. <a href="#kilde-skat">Skatteregler: kilde [1]</a>.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="tax-section" aria-labelledby="tax-title">
+      <div class="tax-heading"><p class="eyebrow">DET MED SMÅT, I ØJENHØJDE</p><h2 id="tax-title">Skat, også før du sælger.</h2><p>På en aktiesparekonto opgøres afkastet hvert år. Det er værd at forstå både de gode og de dårlige år. <a class="citation" href="#kilde-skat">[1]</a></p></div>
+      <div class="tax-cards">
+        <article><span class="tax-card-icon" aria-hidden="true">↗</span><h3>Når investeringen stiger</h3><p>Du betaler 17 % skat af årets afkast, også urealiserede kursgevinster. Giver 10.000 kr. et afkast på 1.000 kr. efter omkostninger, er skatten 170 kr., hvis du ikke har negativ skat fra tidligere år.</p></article>
+        <article><span class="tax-card-icon" aria-hidden="true">↘</span><h3>Når investeringen falder</h3><p>Et tab på 1.000 kr. giver 170 kr. i negativ skat. Banken fremfører den til modregning i senere skat på samme konto. Den kan ikke modregnes i investeringer uden for kontoen og går tabt, hvis kontoen lukkes med uudnyttet negativ skat.</p></article>
+      </div>
+    </section>
+
+    <section id="kilder" class="sources" aria-labelledby="sources-title">
+      <div><p class="eyebrow">FAKTA FREM FOR MAVEFORNEMMELSER</p><h2 id="sources-title">Direkte fra Skattestyrelsen</h2><p>Skatteoplysningerne er baseret på skat.dk. Beregneren er vores forenklede illustration, ikke Skattestyrelsens værktøj.</p></div>
+      <div id="kilde-skat" class="source-card"><span class="source-tag">[1] OFFICIEL KILDE</span><a href="https://skat.dk/borger/aktier-og-andre-vaerdipapirer/aktiesparekonto">Skattestyrelsen: Aktiesparekonto <span aria-hidden="true">↗</span></a><p>Skattesats, lagerbeskatning, tab, hvem der kan oprette en konto, tilladte investeringer og indskudsloftet for 2026.</p><span class="source-date">Oplysninger kontrolleret 25. september 2026. Regler kan ændre sig.</span></div>
+    </section>
+  </main>
+  <footer class="site-footer page-width"><a class="brand" href="./">aktiesparekonto<span class="brand-dot">.</span></a><p>Et uafhængigt læringsværktøj. Ikke personlig investeringsrådgivning.<br>Ingen cookies, tracking eller indsendelse af dine beregninger.</p><a href="#main">Til toppen ↑</a></footer>
+</body>
+</html>
