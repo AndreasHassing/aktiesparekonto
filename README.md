@@ -6,13 +6,13 @@ Siden forklarer aktiesparekonto og illustrerer indbetaling, afkast, ETF-omkostni
 
 ## GitHub Pages
 
-Siden er statisk og kræver hverken installation, byggetrin eller eksterne biblioteker.
+Siden er statisk og kræver hverken installation eller byggetrin. Grafen bruger Chart.js fra jsDelivr CDN.
 
 1. Åbn repositoryets **Settings → Pages**.
 2. Vælg **Deploy from a branch**, den branch siden skal udgives fra, og **/ (root)**.
 3. Gem. Siden bliver tilgængelig på <https://andreashassing.github.io/aktiesparekonto/>.
 
-Alle lokale ressourcer bruger relative stier, så siden også virker under repositoryets undermappe.
+Projektets egne ressourcer bruger relative stier, så siden også virker under repositoryets undermappe.
 
 ## Lokal visning og test
 
@@ -45,4 +45,4 @@ Skattemodellen findes i `calculator.js`; visning og interaktion i `app.js`. Test
 
 Skatteregler og kildehenvisning: [Skattestyrelsen om aktiesparekonto](https://skat.dk/borger/aktier-og-andre-vaerdipapirer/aktiesparekonto). Ved opdatering af indskudsloftet skal både `calculator.js`, HTML-felter og -tekst, valideringsbeskeden i `app.js` og denne beskrivelse opdateres. Kildedatoen på siden skal afspejle den seneste faktakontrol.
 
-Brugerens input behandles udelukkende i browseren. Siden bruger ikke cookies, analyseværktøjer eller eksterne skrifttyper.
+Brugerens input behandles udelukkende i browseren og sendes ikke til Chart.js eller jsDelivr. Siden bruger ikke cookies, analyseværktøjer eller eksterne skrifttyper.
