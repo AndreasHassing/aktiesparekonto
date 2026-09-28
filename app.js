@@ -1,7 +1,7 @@
-import chartJs, { registerables } from 'https://cdn.jsdelivr.net/npm/chart.js@4.5/+esm';
+import { Chart, registerables } from 'https://cdn.jsdelivr.net/npm/chart.js@4.5/+esm';
 import { project } from './calculator.js';
 
-chartJs.register(...registerables);
+Chart.register(...registerables);
 
 const form = document.querySelector('#calculator-form');
 const currency = new Intl.NumberFormat('da-DK', { style: 'currency', currency: 'DKK', maximumFractionDigits: 0 });
@@ -72,7 +72,7 @@ function drawChart(deposit, result) {
     chart.options = options;
     chart.update('none');
   } else {
-    chart = new chartJs(chartCanvas, { type: 'line', data, options });
+    chart = new Chart(chartCanvas, { type: 'line', data, options });
   }
 }
 
