@@ -95,6 +95,7 @@ function render() {
   text('deposited-value', currency.format(values.deposit));
   text('fees-value', currency.format(result.totalFees));
   text('tax-value', currency.format(result.totalTax));
+  text('return-difference-value', currency.format(result.returnDifference));
   const lossNote = document.querySelector('#loss-note');
   lossNote.hidden = result.taxCredit <= 0;
   lossNote.textContent = `Fremført negativ skat: ${currency.format(result.taxCredit)}. Kan modregnes i fremtidig skat på samme konto, men udbetales ikke og er ikke medregnet i kontoværdien.`;

@@ -109,12 +109,13 @@
             <figure class="chart-figure">
               <figcaption class="chart-legend"><span><i class="legend-net"></i>Din kontoværdi</span><span><i class="legend-gross"></i>Uden skat og omkostninger</span></figcaption>
               <div class="chart-container"><canvas id="chart" role="img" aria-label="Udvikling i din investering"></canvas></div>
-              <p class="chart-note">Samme afkast hvert år er en forenkling. I virkeligheden svinger markedet.</p>
+              <p class="chart-note">Uden skat og omkostninger forbliver hele beløbet investeret og kan give yderligere afkast (eller tab). Derfor er forskellen mellem linjerne ikke kun summen af betalt skat og ETF-omkostninger. Samme afkast hvert år er en forenkling; i virkeligheden svinger markedet.</p>
             </figure>
             <div class="result-stats">
               <div><span>Du har indbetalt</span><strong id="deposited-value"></strong></div>
               <div><span>ETF-omkostninger i alt</span><strong id="fees-value"></strong></div>
               <div><span>Betalt skat i alt</span><strong id="tax-value"></strong></div>
+              <div><span>Forskel i efterfølgende afkast</span><strong id="return-difference-value"></strong></div>
             </div>
             <p id="loss-note" class="loss-note" hidden></p>
             <div class="result-footnote"><span aria-hidden="true">ⓘ</span><p>Skatten betales fra kontoen i modellen. Beløbene er i fremtidige kroner, uden inflation. Du kan miste hele din investering.</p></div>
@@ -142,7 +143,7 @@
             <li>Årets skattepligtige afkast er i modellen afkast minus ETF-omkostninger. Positivt afkast beskattes med 17 %, efter modregning af eventuel fremført negativ skat. Et tab giver negativ skat på 17 % af tabet til senere år på samme konto — ingen kontant skatterefusion.</li>
             <li>Skat trækkes fra kontoen ved årets slutning i modellen. I praksis hæver banken skatten til betaling året efter. Du må indbetale til skat ud over loftet i det kalenderår, hvor skatten forfalder. Den mulighed indgår ikke i beregningen.</li>
           </ol>
-          <p>Vi medregner ikke kurtage, valutaveksling, depotgebyrer, udenlandsk udbytteskat eller inflation. Modellen fastholder skattesatsen i hele perioden og antager en ETF, der må ligge på en aktiesparekonto. Ikke alle ETF'er er tilladt. Grafens sammenligning er uden både skat og omkostninger; den er ikke en beregning af et almindeligt aktiedepot. <a href="#kilde-skat">Skatteregler: kilde [1]</a>.</p>
+          <p>Vi medregner ikke kurtage, valutaveksling, depotgebyrer, udenlandsk udbytteskat eller inflation. Modellen fastholder skattesatsen i hele perioden og antager en ETF, der må ligge på en aktiesparekonto. Ikke alle ETF'er er tilladt. Grafens sammenligning er uden både skat og omkostninger; den er ikke en beregning af et almindeligt aktiedepot. Forskellen mellem grafens slutværdier er betalt skat, ETF-omkostninger og forskellen i efterfølgende afkast tilsammen. <a href="#kilde-skat">Skatteregler: kilde [1]</a>.</p>
         </div>
       </details>
     </section>

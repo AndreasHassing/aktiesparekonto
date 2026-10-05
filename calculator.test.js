@@ -19,6 +19,20 @@ test('skat og omkostninger reducerer den efterfølgende renters rente', () => {
   close(result.balance, defaults.deposit + result.rows.reduce((sum, row) => sum + row.gain - row.fee - row.tax, 0));
 });
 
+test('afkastforskellen forklarer forskellen til sammenligningen uden skat og omkostninger', () => {
+  const result = project({ deposit: 174_200, annualReturn: 12, annualFee: 0.2, years: 10 });
+  close(result.balance, 442_635.46840129385);
+  close(result.rows.at(-1).beforeCosts, 541_038.7578935619);
+  close(result.returnDifference, 37_270.59180370724);
+  close(result.rows.at(-1).beforeCosts, result.balance + result.totalFees + result.totalTax + result.returnDifference);
+});
+
+test('afkastforskellen kan være negativ ved tab', () => {
+  const result = project({ ...defaults, annualReturn: -5, years: 2 });
+  assert.ok(result.returnDifference < 0);
+  close(result.rows.at(-1).beforeCosts, result.balance + result.totalFees + result.totalTax + result.returnDifference);
+});
+
 test('tab giver fremført negativ skat, ikke kontant udbetaling', () => {
   const loss = calculateYear(100_000, -0.2, 0);
   close(loss.closing, 80_000);

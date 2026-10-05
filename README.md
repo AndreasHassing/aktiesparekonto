@@ -39,6 +39,7 @@ Der er ingen separat build- eller lintopsætning.
 - ETF-omkostning (standard 0,2 %) trækkes fra værdien efter årets afkast.
 - 17 % lagerbeskatning af nettoafkastet. Negativ skat fremføres til modregning på samme konto, ikke til kontant udbetaling.
 - Skatten trækkes fra kontoen ved årets slutning som en forenkling. Ekstra indskud til skattebetaling indgår ikke.
+- Grafens sammenligning uden skat og omkostninger geninvesterer også beløb, der ellers ville være betalt i skat og omkostninger. Forskellen mellem slutværdierne er derfor betalt skat + ETF-omkostninger + forskellen i efterfølgende afkast.
 - Ingen inflation, kurtage, depotgebyrer, valutaveksling eller udenlandsk udbytteskat.
 
 Skattemodellen findes i `calculator.js`; visning og interaktion i `app.js`. Testene dækker bl.a. renters rente, omkostninger, tabsmodregning, totalt tab og ugyldige input.
