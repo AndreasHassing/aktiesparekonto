@@ -14,26 +14,20 @@ let chart;
 
 function drawChart(deposit, result) {
   const net = [deposit, ...result.rows.map(row => row.closing)];
-  const gross = [deposit, ...result.rows.map(row => row.beforeCosts)];
   const labels = Array.from({ length: result.rows.length + 1 }, (_, year) => year);
-  const description = `Udvikling i din investering. Med de valgte forudsætninger går kontoværdien fra ${currency.format(deposit)} til ${currency.format(result.balance)} efter ${result.rows.length} år. Uden skat og omkostninger ville værdien være ${currency.format(gross.at(-1))}. Skat betales med ekstra indskud og reducerer ikke kontoværdien. Alle årlige værdier findes i tabellen nedenfor.`;
+  const description = `Udvikling i din investering. Med de valgte forudsætninger går kontoværdien fra ${currency.format(deposit)} til ${currency.format(result.balance)} efter ${result.rows.length} år. Skat betales med ekstra indskud og reducerer ikke kontoværdien. Alle årlige værdier findes i tabellen nedenfor.`;
   chartCanvas.setAttribute('aria-label', description);
   const data = {
     labels,
     datasets: [
       {
-        data: gross,
-        borderColor: '#8a927d',
-        borderDash: [5, 5],
-        borderWidth: 2,
-        pointRadius: 0,
-      },
-      {
         data: net,
         borderColor: '#27634a',
         backgroundColor: '#edf3e0',
         borderWidth: 3,
-        pointRadius: context => context.dataIndex === labels.length - 1 ? 4 : 0,
+        pointRadius: context => context.dataIndex === 0 ? 0 : 3,
+        pointHoverRadius: 5,
+        pointHitRadius: 8,
         pointBackgroundColor: '#27634a',
         fill: 'origin',
       },
@@ -43,7 +37,15 @@ function drawChart(deposit, result) {
     responsive: true,
     maintainAspectRatio: false,
     animation: false,
-    plugins: { legend: { display: false } },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          title: items => items[0].dataIndex === 0 ? 'I dag' : `${items[0].dataIndex} år`,
+          label: context => currency.format(context.parsed.y),
+        },
+      },
+    },
     scales: {
       x: {
         grid: { display: false },
@@ -61,7 +63,7 @@ function drawChart(deposit, result) {
       },
       y: {
         beginAtZero: true,
-        max: Math.max(...net, ...gross, 1) * 1.08,
+        max: Math.max(...net, 1) * 1.08,
         grid: { color: '#e7ebe2' },
         ticks: { color: '#58675f', callback: value => compact.format(value) },
       },
@@ -95,7 +97,6 @@ function render() {
   text('deposited-value', currency.format(values.deposit));
   text('fees-value', currency.format(result.totalFees));
   text('tax-value', currency.format(result.totalTax));
-  text('return-difference-value', currency.format(result.returnDifference));
   const lossNote = document.querySelector('#loss-note');
   lossNote.hidden = result.taxCredit <= 0;
   lossNote.textContent = `Fremført negativ skat: ${currency.format(result.taxCredit)}. Kan modregnes i fremtidig skat på samme konto, men udbetales ikke og er ikke medregnet i kontoværdien.`;
