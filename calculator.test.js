@@ -5,32 +5,41 @@ import { calculateYear, project, DEPOSIT_LIMIT } from './calculator.js';
 const defaults = { deposit: 100_000, annualReturn: 7, annualFee: 0.2, years: 10 };
 const close = (actual, expected) => assert.ok(Math.abs(actual - expected) < 0.000001);
 
-test('ETF-omkostning trækkes før 17 % skat af årets nettoafkast', () => {
+test('skatten beregnes efter ETF-omkostninger og betales med ekstra indskud', () => {
   const result = project({ ...defaults, years: 1 });
   close(result.totalFees, 214);
   close(result.totalTax, 1153.62);
-  close(result.balance, 105632.38);
+  close(result.balance, 106786);
+  close(result.change, 5632.38);
 });
 
-test('skat og omkostninger reducerer den efterfølgende renters rente', () => {
+test('kun omkostninger reducerer den efterfølgende renters rente på kontoen', () => {
   const result = project(defaults);
-  close(result.balance, 100_000 * (1.0563238 ** 10));
+  close(result.balance, 100_000 * (1.06786 ** 10));
   close(result.rows.at(-1).beforeCosts, 100_000 * (1.07 ** 10));
-  close(result.balance, defaults.deposit + result.rows.reduce((sum, row) => sum + row.gain - row.fee - row.tax, 0));
+  close(result.balance, defaults.deposit + result.rows.reduce((sum, row) => sum + row.gain - row.fee, 0));
+  close(result.change, result.balance - defaults.deposit - result.totalTax);
+});
+
+test('skat betalt med ekstra indskud ændrer ikke kontoværdien uden omkostninger', () => {
+  const result = project({ ...defaults, annualFee: 0 });
+  assert.ok(result.totalTax > 0);
+  close(result.balance, result.rows.at(-1).beforeCosts);
+  close(result.returnDifference, 0);
 });
 
 test('afkastforskellen forklarer forskellen til sammenligningen uden skat og omkostninger', () => {
   const result = project({ deposit: 174_200, annualReturn: 12, annualFee: 0.2, years: 10 });
-  close(result.balance, 442_635.46840129385);
+  close(result.balance, 174_200 * (1.12 * 0.998) ** 10);
   close(result.rows.at(-1).beforeCosts, 541_038.7578935619);
-  close(result.returnDifference, 37_270.59180370724);
-  close(result.rows.at(-1).beforeCosts, result.balance + result.totalFees + result.totalTax + result.returnDifference);
+  close(result.rows.at(-1).beforeCosts, result.balance + result.totalFees + result.returnDifference);
+  assert.ok(result.totalTax > 0);
 });
 
 test('afkastforskellen kan være negativ ved tab', () => {
   const result = project({ ...defaults, annualReturn: -5, years: 2 });
   assert.ok(result.returnDifference < 0);
-  close(result.rows.at(-1).beforeCosts, result.balance + result.totalFees + result.totalTax + result.returnDifference);
+  close(result.rows.at(-1).beforeCosts, result.balance + result.totalFees + result.returnDifference);
 });
 
 test('nul afkast giver ingen afkastforskel selv med omkostninger', () => {
@@ -44,9 +53,11 @@ test('tab giver fremført negativ skat, ikke kontant udbetaling', () => {
   close(loss.tax, 0);
   close(loss.taxCredit, 3400);
   const recovery = calculateYear(loss.closing, 0.1, 0, loss.taxCredit);
+  close(recovery.closing, 88_000);
   close(recovery.tax, 0);
   close(recovery.taxCredit, 2040);
   const profit = calculateYear(recovery.closing, 0.25, 0, recovery.taxCredit);
+  close(profit.closing, 110_000);
   close(profit.tax, 1700);
   close(profit.taxCredit, 0);
 });

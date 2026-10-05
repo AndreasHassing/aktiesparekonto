@@ -16,7 +16,7 @@ export function calculateYear(opening, returnRate, feeRate, taxCredit = 0) {
     taxableGain,
     tax,
     taxCredit: closingCredit,
-    closing: Math.max(0, opening + taxableGain - tax),
+    closing: Math.max(0, opening + taxableGain),
   };
 }
 
@@ -49,5 +49,5 @@ export function project({ deposit, annualReturn, annualFee, years }) {
   }
 
   const returnDifference = beforeCosts - deposit - rows.reduce((sum, row) => sum + row.gain, 0);
-  return { rows, balance, totalTax, totalFees, returnDifference, taxCredit, change: balance - deposit };
+  return { rows, balance, totalTax, totalFees, returnDifference, taxCredit, change: balance - deposit - totalTax };
 }

@@ -16,7 +16,7 @@ function drawChart(deposit, result) {
   const net = [deposit, ...result.rows.map(row => row.closing)];
   const gross = [deposit, ...result.rows.map(row => row.beforeCosts)];
   const labels = Array.from({ length: result.rows.length + 1 }, (_, year) => year);
-  const description = `Udvikling i din investering. Med de valgte forudsætninger går kontoværdien fra ${currency.format(deposit)} til ${currency.format(result.balance)} efter ${result.rows.length} år. Uden skat og omkostninger ville værdien være ${currency.format(gross.at(-1))}. Alle årlige værdier findes i tabellen nedenfor.`;
+  const description = `Udvikling i din investering. Med de valgte forudsætninger går kontoværdien fra ${currency.format(deposit)} til ${currency.format(result.balance)} efter ${result.rows.length} år. Uden skat og omkostninger ville værdien være ${currency.format(gross.at(-1))}. Skat betales med ekstra indskud og reducerer ikke kontoværdien. Alle årlige værdier findes i tabellen nedenfor.`;
   chartCanvas.setAttribute('aria-label', description);
   const data = {
     labels,

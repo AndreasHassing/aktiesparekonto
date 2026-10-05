@@ -34,12 +34,12 @@ Der er ingen separat build- eller lintopsætning.
 
 ## Beregningsmodel
 
-- Én indbetaling på en ny, tom konto; indskudsloftet for 2026 er 174.200 kr.
+- Én indbetaling til investering på en ny, tom konto; indskudsloftet for 2026 er 174.200 kr.
 - Konstant årligt bruttoafkast med geninvesterede udbytter; 7 % er kun et eksempel.
 - ETF-omkostning (standard 0,2 %) trækkes fra værdien efter årets afkast.
 - 17 % lagerbeskatning af nettoafkastet. Negativ skat fremføres til modregning på samme konto, ikke til kontant udbetaling.
-- Skatten trækkes fra kontoen ved årets slutning som en forenkling. Ekstra indskud til skattebetaling indgår ikke.
-- Grafens sammenligning uden skat og omkostninger geninvesterer også beløb, der ellers ville være betalt i skat og omkostninger. Forskellen mellem slutværdierne er derfor betalt skat + ETF-omkostninger + forskellen i efterfølgende afkast.
+- Skatten betales via ekstra indskud, som straks bruges til skat, i stedet for at reducere investeringen. Den viste gevinst er efter disse skattebetalinger.
+- Grafens sammenligning uden skat og omkostninger geninvesterer også beløb, der ellers ville være betalt i ETF-omkostninger. Forskellen mellem slutværdierne er derfor ETF-omkostninger + forskellen i efterfølgende afkast; skattebetalingen ligger uden for de viste kontoværdier.
 - Ingen inflation, kurtage, depotgebyrer, valutaveksling eller udenlandsk udbytteskat.
 
 Skattemodellen findes i `calculator.js`; visning og interaktion i `app.js`. Testene dækker bl.a. renters rente, omkostninger, tabsmodregning, totalt tab og ugyldige input.
