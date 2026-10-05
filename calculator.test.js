@@ -33,6 +33,11 @@ test('afkastforskellen kan være negativ ved tab', () => {
   close(result.rows.at(-1).beforeCosts, result.balance + result.totalFees + result.totalTax + result.returnDifference);
 });
 
+test('nul afkast giver ingen afkastforskel selv med omkostninger', () => {
+  const result = project({ ...defaults, annualReturn: 0 });
+  assert.equal(result.returnDifference, 0);
+});
+
 test('tab giver fremført negativ skat, ikke kontant udbetaling', () => {
   const loss = calculateYear(100_000, -0.2, 0);
   close(loss.closing, 80_000);

@@ -48,6 +48,6 @@ export function project({ deposit, annualReturn, annualFee, years }) {
     rows.push({ year, ...result, beforeCosts });
   }
 
-  const returnDifference = beforeCosts - balance - totalTax - totalFees;
+  const returnDifference = beforeCosts - deposit - rows.reduce((sum, row) => sum + row.gain, 0);
   return { rows, balance, totalTax, totalFees, returnDifference, taxCredit, change: balance - deposit };
 }
