@@ -34,20 +34,17 @@ export function project({ deposit, annualReturn, annualFee, years }) {
   const rows = [];
   let balance = deposit;
   let taxCredit = 0;
-  let beforeCosts = deposit;
   let totalTax = 0;
   let totalFees = 0;
 
   for (let year = 1; year <= years; year += 1) {
     const result = calculateYear(balance, annualReturn / 100, annualFee / 100, taxCredit);
-    beforeCosts *= 1 + annualReturn / 100;
     balance = result.closing;
     taxCredit = result.taxCredit;
     totalTax += result.tax;
     totalFees += result.fee;
-    rows.push({ year, ...result, beforeCosts });
+    rows.push({ year, ...result });
   }
 
-  const returnDifference = beforeCosts - deposit - rows.reduce((sum, row) => sum + row.gain, 0);
-  return { rows, balance, totalTax, totalFees, returnDifference, taxCredit, change: balance - deposit - totalTax };
+  return { rows, balance, totalTax, totalFees, taxCredit, change: balance - deposit - totalTax };
 }

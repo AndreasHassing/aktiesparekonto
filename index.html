@@ -107,15 +107,14 @@
               <p class="result-change"><span id="change-value" class="change-badge"></span><span>efter skat og ETF-omkostninger</span></p>
             </div>
             <figure class="chart-figure">
-              <figcaption class="chart-legend"><span><i class="legend-net"></i>Din kontoværdi</span><span><i class="legend-gross"></i>Uden skat og omkostninger</span></figcaption>
+              <figcaption class="chart-legend"><span><i class="legend-net"></i>Din kontoværdi</span></figcaption>
               <div class="chart-container"><canvas id="chart" role="img" aria-label="Udvikling i din investering"></canvas></div>
-              <p class="chart-note">Skat betales med ekstra indskud og reducerer ikke kontoværdien. Forskellen mellem linjerne skyldes ETF-omkostninger og deres virkning på senere afkast (eller tab). Samme afkast hvert år er en forenkling; i virkeligheden svinger markedet.</p>
+              <p class="chart-note">Skat betales med ekstra indskud og reducerer ikke kontoværdien. Samme afkast hvert år er en forenkling; i virkeligheden svinger markedet.</p>
             </figure>
             <div class="result-stats">
               <div><span>Første indbetaling</span><strong id="deposited-value"></strong></div>
               <div><span>ETF-omkostninger i alt</span><strong id="fees-value"></strong></div>
               <div><span>Betalt skat (ekstra indskud)</span><strong id="tax-value"></strong></div>
-              <div><span>Forskel i efterfølgende afkast</span><strong id="return-difference-value"></strong></div>
             </div>
             <p id="loss-note" class="loss-note" hidden></p>
             <div class="result-footnote"><span aria-hidden="true">ⓘ</span><p>Ekstra indskud bruges kun til skat og øger ikke kontoværdien. Den viste gevinst er efter disse skattebetalinger. Beløbene er i fremtidige kroner, uden inflation. Du kan miste hele din investering.</p></div>
@@ -143,7 +142,7 @@
             <li>Årets skattepligtige afkast er i modellen afkast minus ETF-omkostninger. Positivt afkast beskattes med 17 %, efter modregning af eventuel fremført negativ skat. Et tab giver negativ skat på 17 % af tabet til senere år på samme konto — ingen kontant skatterefusion.</li>
             <li>Årets skat dækkes i modellen af et ekstra indskud, som straks går til skattebetalingen. Investeringerne sælges ikke for at betale skat. I praksis hæver banken skatten til betaling året efter. Du må indbetale til skat ud over loftet i det kalenderår, hvor skatten forfalder.</li>
           </ol>
-          <p>Vi medregner ikke kurtage, valutaveksling, depotgebyrer, udenlandsk udbytteskat eller inflation. Modellen fastholder skattesatsen i hele perioden og antager en ETF, der må ligge på en aktiesparekonto. Ikke alle ETF'er er tilladt. Grafens sammenligning er uden både skat og omkostninger; den er ikke en beregning af et almindeligt aktiedepot. Forskellen mellem grafens slutværdier er ETF-omkostninger og forskellen i efterfølgende afkast tilsammen. Skatteindskuddene går ind på kontoen og bruges til at betale skat, men øger ikke grafens kontoværdi. <a href="#kilde-skat">Skatteregler: kilde [1]</a>.</p>
+          <p>Vi medregner ikke kurtage, valutaveksling, depotgebyrer, udenlandsk udbytteskat eller inflation. Modellen fastholder skattesatsen i hele perioden og antager en ETF, der må ligge på en aktiesparekonto. Ikke alle ETF'er er tilladt. Skatteindskuddene går ind på kontoen og bruges til at betale skat, men øger ikke grafens kontoværdi. <a href="#kilde-skat">Skatteregler: kilde [1]</a>.</p>
         </div>
       </details>
     </section>
