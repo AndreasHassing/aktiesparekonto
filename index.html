@@ -69,7 +69,7 @@
           <fieldset id="calculator-inputs" disabled>
             <legend class="panel-title">Dine forudsætninger</legend>
             <div class="field">
-              <label for="deposit">Din indbetaling <span class="unit">kr.</span></label>
+              <label for="deposit">Din første indbetaling <span class="unit">kr.</span></label>
               <input id="deposit" name="deposit" type="number" inputmode="decimal" min="0" max="174200" step="any" value="50000" required aria-describedby="deposit-help">
               <input id="deposit-range" type="range" min="0" max="174200" step="100" value="50000" aria-label="Justér indbetaling i kroner">
               <p id="deposit-help" class="field-help">Engangsindskud på en ny, tom konto i 2026.</p>
@@ -109,15 +109,16 @@
             <figure class="chart-figure">
               <figcaption class="chart-legend"><span><i class="legend-net"></i>Din kontoværdi</span><span><i class="legend-gross"></i>Uden skat og omkostninger</span></figcaption>
               <div class="chart-container"><canvas id="chart" role="img" aria-label="Udvikling i din investering"></canvas></div>
-              <p class="chart-note">Samme afkast hvert år er en forenkling. I virkeligheden svinger markedet.</p>
+              <p class="chart-note">Skat betales med ekstra indskud og reducerer ikke kontoværdien. Forskellen mellem linjerne skyldes ETF-omkostninger og deres virkning på senere afkast (eller tab). Samme afkast hvert år er en forenkling; i virkeligheden svinger markedet.</p>
             </figure>
             <div class="result-stats">
-              <div><span>Du har indbetalt</span><strong id="deposited-value"></strong></div>
+              <div><span>Første indbetaling</span><strong id="deposited-value"></strong></div>
               <div><span>ETF-omkostninger i alt</span><strong id="fees-value"></strong></div>
-              <div><span>Betalt skat i alt</span><strong id="tax-value"></strong></div>
+              <div><span>Betalt skat (ekstra indskud)</span><strong id="tax-value"></strong></div>
+              <div><span>Forskel i efterfølgende afkast</span><strong id="return-difference-value"></strong></div>
             </div>
             <p id="loss-note" class="loss-note" hidden></p>
-            <div class="result-footnote"><span aria-hidden="true">ⓘ</span><p>Skatten betales fra kontoen i modellen. Beløbene er i fremtidige kroner, uden inflation. Du kan miste hele din investering.</p></div>
+            <div class="result-footnote"><span aria-hidden="true">ⓘ</span><p>Ekstra indskud bruges kun til skat og øger ikke kontoværdien. Den viste gevinst er efter disse skattebetalinger. Beløbene er i fremtidige kroner, uden inflation. Du kan miste hele din investering.</p></div>
           </div>
           <p id="loading-note">Beregneren indlæses… JavaScript er nødvendigt for at vise resultatet.</p>
         </div>
@@ -126,7 +127,7 @@
         <summary>Se beregningen år for år <span aria-hidden="true">+</span></summary>
         <div class="table-wrapper" tabindex="0" role="region" aria-label="Årsoversigt, rul vandret på små skærme">
           <table>
-            <caption>Alle beløb i kroner. Negativ skat fremføres; den udbetales ikke.</caption>
+            <caption>Alle beløb i kroner. Betalt skat dækkes af ekstra indskud og trækkes ikke fra slutværdien. Negativ skat fremføres; den udbetales ikke.</caption>
             <thead><tr><th scope="col">År</th><th scope="col">Startværdi</th><th scope="col">Afkast</th><th scope="col">ETF-omk.</th><th scope="col">Betalt skat</th><th scope="col">Slutværdi</th><th scope="col">Fremført negativ skat</th></tr></thead>
             <tbody id="yearly-rows"></tbody>
           </table>
@@ -135,14 +136,14 @@
       <details class="details-block assumptions">
         <summary>Forudsætninger og sådan regner vi <span aria-hidden="true">+</span></summary>
         <div class="details-content">
-          <p>Vi regner med én indbetaling, ingen efterfølgende indskud eller hævninger og et konstant årligt afkast med eventuelle udbytter geninvesteret. Afkastet er før ETF-omkostninger og skat. Standardafkastet på 7 % er et regneeksempel, ikke et forventet eller garanteret afkast.</p>
+          <p>Vi regner med én indbetaling til investering og kun efterfølgende indskud til skat, ingen hævninger og et konstant årligt afkast med eventuelle udbytter geninvesteret. Afkastet er før ETF-omkostninger og skat. Standardafkastet på 7 % er et regneeksempel, ikke et forventet eller garanteret afkast.</p>
           <ol>
             <li>Årets afkast = værdien ved årets start × den valgte afkastprocent.</li>
             <li>ETF-omkostning = værdien efter afkast × den valgte omkostningsprocent. Det er en årlig tilnærmelse; en ETF's løbende omkostninger indgår normalt i fondens kurs. Brug derfor ikke et afkast, der allerede er efter disse omkostninger.</li>
             <li>Årets skattepligtige afkast er i modellen afkast minus ETF-omkostninger. Positivt afkast beskattes med 17 %, efter modregning af eventuel fremført negativ skat. Et tab giver negativ skat på 17 % af tabet til senere år på samme konto — ingen kontant skatterefusion.</li>
-            <li>Skat trækkes fra kontoen ved årets slutning i modellen. I praksis hæver banken skatten til betaling året efter. Du må indbetale til skat ud over loftet i det kalenderår, hvor skatten forfalder. Den mulighed indgår ikke i beregningen.</li>
+            <li>Årets skat dækkes i modellen af et ekstra indskud, som straks går til skattebetalingen. Investeringerne sælges ikke for at betale skat. I praksis hæver banken skatten til betaling året efter. Du må indbetale til skat ud over loftet i det kalenderår, hvor skatten forfalder.</li>
           </ol>
-          <p>Vi medregner ikke kurtage, valutaveksling, depotgebyrer, udenlandsk udbytteskat eller inflation. Modellen fastholder skattesatsen i hele perioden og antager en ETF, der må ligge på en aktiesparekonto. Ikke alle ETF'er er tilladt. Grafens sammenligning er uden både skat og omkostninger; den er ikke en beregning af et almindeligt aktiedepot. <a href="#kilde-skat">Skatteregler: kilde [1]</a>.</p>
+          <p>Vi medregner ikke kurtage, valutaveksling, depotgebyrer, udenlandsk udbytteskat eller inflation. Modellen fastholder skattesatsen i hele perioden og antager en ETF, der må ligge på en aktiesparekonto. Ikke alle ETF'er er tilladt. Grafens sammenligning er uden både skat og omkostninger; den er ikke en beregning af et almindeligt aktiedepot. Forskellen mellem grafens slutværdier er ETF-omkostninger og forskellen i efterfølgende afkast tilsammen. Skatteindskuddene går ind på kontoen og bruges til at betale skat, men øger ikke grafens kontoværdi. <a href="#kilde-skat">Skatteregler: kilde [1]</a>.</p>
         </div>
       </details>
     </section>

@@ -16,7 +16,7 @@ function drawChart(deposit, result) {
   const net = [deposit, ...result.rows.map(row => row.closing)];
   const gross = [deposit, ...result.rows.map(row => row.beforeCosts)];
   const labels = Array.from({ length: result.rows.length + 1 }, (_, year) => year);
-  const description = `Udvikling i din investering. Med de valgte forudsætninger går kontoværdien fra ${currency.format(deposit)} til ${currency.format(result.balance)} efter ${result.rows.length} år. Uden skat og omkostninger ville værdien være ${currency.format(gross.at(-1))}. Alle årlige værdier findes i tabellen nedenfor.`;
+  const description = `Udvikling i din investering. Med de valgte forudsætninger går kontoværdien fra ${currency.format(deposit)} til ${currency.format(result.balance)} efter ${result.rows.length} år. Uden skat og omkostninger ville værdien være ${currency.format(gross.at(-1))}. Skat betales med ekstra indskud og reducerer ikke kontoværdien. Alle årlige værdier findes i tabellen nedenfor.`;
   chartCanvas.setAttribute('aria-label', description);
   const data = {
     labels,
@@ -95,6 +95,7 @@ function render() {
   text('deposited-value', currency.format(values.deposit));
   text('fees-value', currency.format(result.totalFees));
   text('tax-value', currency.format(result.totalTax));
+  text('return-difference-value', currency.format(result.returnDifference));
   const lossNote = document.querySelector('#loss-note');
   lossNote.hidden = result.taxCredit <= 0;
   lossNote.textContent = `Fremført negativ skat: ${currency.format(result.taxCredit)}. Kan modregnes i fremtidig skat på samme konto, men udbetales ikke og er ikke medregnet i kontoværdien.`;
