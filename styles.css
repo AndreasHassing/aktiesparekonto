@@ -161,7 +161,7 @@ h3 { font-size: 15px; margin: 13px 0 9px; font-weight: 650; }
   .result-panel { padding: 28px 20px; }
   .result-value { font-size: 40px; }
   .chart-figure { margin-top: 25px; }
-  .result-stats { gap: 10px; }
+  .result-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .result-stats strong { font-size: 16px; }
   .result-stats span { font-size: 11px; }
   .result-footnote, .chart-note { font-size: 11px; }
